@@ -5,4 +5,7 @@ from starlette.responses import JSONResponse
 
 app = FastAPI()
 
-
+@app.get("/ping")
+def getpong ()
+    return ("pong")
+    
