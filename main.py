@@ -28,7 +28,7 @@ def error():
         html_content= file.read()
     return Response(content=html_content, status_code=404,media_type="text.html")
 
-@app.post("/post")
+@app.post("/posts")
 def post_book(books):
     extend(books.author,books.title,books.content,books.creation_datetime)
     if books.author is null:
@@ -40,5 +40,12 @@ def post_book(books):
     elif books.creation_datetime is null:
         return JSONResponse({f"The creatime is missing"},status_code=400)
     return JSONResponse({f"The book posting is successful"},status_code=200)
+
+@app.get("/posts")
+def get_book(books):
+    return JSONResponse(
+        content={books},
+        status_code=200
+    )
 
 
